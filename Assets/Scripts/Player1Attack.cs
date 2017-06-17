@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack : MonoBehaviour {
+public class Player1Attack : MonoBehaviour {
 
     private bool attack;
     private float lastAttackTime;
@@ -15,6 +15,7 @@ public class Attack : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        attack = false;
         if (Input.GetKeyDown(KeyCode.J)) {
             attack = true;
         }
