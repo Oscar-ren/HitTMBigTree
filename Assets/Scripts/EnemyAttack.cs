@@ -30,6 +30,7 @@ public class EnemyAttack : MonoBehaviour {
 	{
 		if(other.tag == "Player")
 		{
+			anim.SetFloat("Speed", 0.0f);
 			player = other.gameObject;
 			transform.LookAt (other.transform.position);
 			playerInRange = true;
@@ -41,6 +42,7 @@ public class EnemyAttack : MonoBehaviour {
 	{
 		if(other.tag == "Player")
 		{
+			anim.SetFloat("Speed", 1.0f);
 			player = null;
 			playerInRange = false;
 		}
@@ -49,14 +51,16 @@ public class EnemyAttack : MonoBehaviour {
 	void Attack ()
 	{
 		timer = 0f;
-		anim.SetFloat("Speed", 0.0f);
 		anim.SetTrigger ("Attack");
+		Invoke ("DamagePlayer", 0.7f);
+	}
 
+	void DamagePlayer()
+	{
 		if(player != null && gameObject.name.IndexOf("Enemy_Archer") < 0)
 		{
 			player.GetComponent<PlayerBattle> ().BeAttecked (attackDamage);
 		}
-			
 	}
 
 
