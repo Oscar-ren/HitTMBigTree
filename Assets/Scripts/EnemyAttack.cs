@@ -10,8 +10,7 @@ public class EnemyAttack : MonoBehaviour {
 
 	Animator anim;
 	GameObject player;
-//	PlayerHealth playerHealth;
-	//EnemyHealth enemyHealth;
+	EnemyBattle enemyBattle;
 	bool playerInRange;
 	float timer;
 
@@ -21,9 +20,7 @@ public class EnemyAttack : MonoBehaviour {
 
 	void Awake ()
 	{
-		player = GameObject.FindGameObjectWithTag ("Player");
-//		playerHealth = player.GetComponent <PlayerHealth> ();
-		//enemyHealth = GetComponent<EnemyHealth>();
+		enemyBattle = GetComponent<EnemyBattle>();
 		anim = GetComponent <Animator> ();
 		timer = timeBetweenAttacks;
 	}
@@ -33,8 +30,8 @@ public class EnemyAttack : MonoBehaviour {
 	{
 		if(other.tag == "Player")
 		{
+			player = other.gameObject;
 			transform.LookAt (other.transform.position);
-
 			playerInRange = true;
 		}
 	}
@@ -44,6 +41,7 @@ public class EnemyAttack : MonoBehaviour {
 	{
 		if(other.tag == "Player")
 		{
+			player = null;
 			playerInRange = false;
 		}
 	}
@@ -54,27 +52,22 @@ public class EnemyAttack : MonoBehaviour {
 		anim.SetFloat("Speed", 0.0f);
 		anim.SetTrigger ("Attack");
 
-//		if(playerHealth.currentHealth > 0)
-//		{
-//			playerHealth.TakeDamage (attackDamage);
-//		}
+		if(player != null && gameObject.name.IndexOf("Enemy_Archer") < 0)
+		{
+			player.GetComponent<PlayerBattle> ().BeAttecked (attackDamage);
+		}
+			
 	}
 
 
 
-	// Update is called once per frame
 	void Update () {
 
 		timer += Time.deltaTime;
 
-		if(timer >= timeBetweenAttacks && playerInRange/* && enemyHealth.currentHealth > 0*/)
+		if(timer >= timeBetweenAttacks && playerInRange && enemyBattle.HP > 0)
 		{
 			Attack ();
 		}
-
-		//		if(playerHealth.currentHealth <= 0)
-		//		{
-		//			anim.SetTrigger ("PlayerDead");
-		//		}
 	}
 }

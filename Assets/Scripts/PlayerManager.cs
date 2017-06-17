@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour {
 	private bool isRotate;
 	private Quaternion targetRotation;
 
+
 	// Use this for initialization
 	void Start () {
 		animator = gameObject.GetComponent<Animator> ();
@@ -110,4 +111,5 @@ public class PlayerManager : MonoBehaviour {
 	{
 		
 	}
+
 }
