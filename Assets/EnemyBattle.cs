@@ -28,6 +28,11 @@ public class EnemyBattle : MonoBehaviour {
     }
     public void Die () {
 		GetComponent<Animator> ().SetTrigger ("isDead");
-		Destroy (gameObject);
+		Invoke ("DestoryEnemy", 1f);
     }
+
+	void DestoryEnemy()
+	{
+		Destroy (gameObject);
+	}
 }
