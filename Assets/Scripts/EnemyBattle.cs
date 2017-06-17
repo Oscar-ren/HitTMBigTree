@@ -2,31 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBattle : MonoBehaviour {
+public class EnemyBattle : MonoBehaviour
+{
 	public EnemyStatus Status;
 	public int HP;
 	public int Defense;
 	public string EnemyName;
 
-	void Start () {
-        Status.SetFullHP(HP);
+	void Start()
+	{
+		Status.SetFullHP(HP);
 		Status.SetName(EnemyName);
 	}
 
-	public void BeAttacked (int damage) {
+	public void BeAttacked(int damage)
+	{
 		if (damage < Defense)
 			damage = Defense;
 
 		HP -= damage - Defense;
-		if (HP <= 0) {
-            HP = 0;
+		if (HP <= 0)
+		{
+			HP = 0;
 			Status.SetHp(HP);
 			Die();
-        } else {
+		}
+		else
+		{
 			Status.SetHp(HP);
 		}
-    }
-    public void Die () {
-		GetComponent<Animator> ().SetTrigger ("isDead");
-    }
+	}
+	public void Die()
+	{
+		GetComponent<Animator>().SetTrigger("isDead");
+		Invoke("DestoryEnemy", 1f);
+	}
+
+	void DestoryEnemy()
+	{
+		Destroy(gameObject);
+	}
 }
