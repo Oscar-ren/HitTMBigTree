@@ -9,7 +9,8 @@ public class CameraManager : MonoBehaviour {
 	Vector3 offset;
 	// Use this for initialization
 	void Start () {
-        offset = new Vector3(8.5f, 12.7f, -9.5f);
+        offset = new Vector3(0f,22f, -21f);
+        transform.rotation = Quaternion.Euler(new Vector3(45f, 0f, 0f));
 	}
 	
 	// Update is called once per frame
