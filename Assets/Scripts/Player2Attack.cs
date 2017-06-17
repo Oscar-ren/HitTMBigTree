@@ -23,8 +23,11 @@ public class Player2Attack : MonoBehaviour {
 
 		if (other.tag == "Enemy" && attack)
 		{
-            Debug.Log(attack);
-            other.GetComponent<EnemyMovement>().StopAnimator();
+			StartCoroutine(DoFrozen(other));
 		}
 	}
+    IEnumerator DoFrozen (Collider other) {
+        yield return new WaitForSeconds(1f);
+        other.GetComponent<EnemyMovement>().StopAnimator();
+    }
 }
