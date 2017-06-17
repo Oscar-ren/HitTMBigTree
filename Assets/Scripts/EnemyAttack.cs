@@ -34,7 +34,6 @@ public class EnemyAttack : MonoBehaviour {
 		if(other.tag == "Player")
 		{
 			transform.LookAt (other.transform.position);
-
 			playerInRange = true;
 		}
 	}
@@ -54,6 +53,11 @@ public class EnemyAttack : MonoBehaviour {
 		anim.SetFloat("Speed", 0.0f);
 		anim.SetTrigger ("Attack");
 
+		if(gameObject.name == "Enemy_Archer")
+		{
+			// 弓箭手攻击不掉血，箭射到才掉血
+		}
+
 //		if(playerHealth.currentHealth > 0)
 //		{
 //			playerHealth.TakeDamage (attackDamage);
@@ -62,7 +66,6 @@ public class EnemyAttack : MonoBehaviour {
 
 
 
-	// Update is called once per frame
 	void Update () {
 
 		timer += Time.deltaTime;

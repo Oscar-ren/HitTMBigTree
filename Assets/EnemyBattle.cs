@@ -3,18 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyBattle : MonoBehaviour {
-    public int HP = 500;
-	private EnemyStatus Status;
-	// Use this for initialization
+	public EnemyStatus Status;
+	public int HP = 500;
+	public string EnemyName;
+
 	void Start () {
-		Status = transform.Find("EnemyStatus/Status").GetComponent<EnemyStatus>();
-        Status.FullHp(HP);
-        Status.SetName("树妖");
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+        Status.SetFullHP(HP);
+		Status.SetName(EnemyName);
 	}
 
     public void Attacked (int h = 100) {
