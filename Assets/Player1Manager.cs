@@ -13,6 +13,8 @@ public class Player1Manager : MonoBehaviour {
 	public Transform player2;
 	float MaxDistance;
 
+    public float Speed = 5;
+
 	// Use this for initialization
 	void Start () {
 		animator = gameObject.GetComponent<Animator> ();
@@ -24,25 +26,25 @@ public class Player1Manager : MonoBehaviour {
         isRotate = false;
 		if(Input.GetKey(KeyCode.W))
 		{
-			animator.SetBool ("Walk", true);
+			animator.SetBool ("Run", true);
             Move(-Vector3.forward);
 		}
 
 		if(Input.GetKey(KeyCode.S))
 		{
-			animator.SetBool ("Walk", true);
+			animator.SetBool ("Run", true);
 			Move(Vector3.forward);
 		}
 
 		if(Input.GetKey(KeyCode.A))
 		{
-			animator.SetBool ("Walk", true);
+			animator.SetBool ("Run", true);
             Move(Vector3.right);
 		}
 
 		if(Input.GetKey(KeyCode.D))
 		{
-			animator.SetBool ("Walk", true);
+			animator.SetBool ("Run", true);
             Move(-Vector3.right);
 		}
 
@@ -53,7 +55,7 @@ public class Player1Manager : MonoBehaviour {
 
 		if(Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A))
 		{
-			animator.SetBool ("Walk", false);
+			animator.SetBool ("Run", false);
 		}
 
 
@@ -97,10 +99,10 @@ public class Player1Manager : MonoBehaviour {
 
 	void Move(Vector3 dir)
 	{
-		Vector3 pos = transform.position + dir * Time.deltaTime * 3;
+		Vector3 pos = transform.position + dir * Time.deltaTime * Speed;
 
 		Vector2 a = Camera.main.WorldToScreenPoint(pos);
-		Vector2 b = Camera.main.WorldToScreenPoint(player2.position - dir * Time.deltaTime * 3);
+		Vector2 b = Camera.main.WorldToScreenPoint(player2.position - dir * Time.deltaTime * Speed);
 
 		float x = Camera.main.pixelWidth;
 		float y = Camera.main.pixelHeight;

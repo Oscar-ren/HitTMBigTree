@@ -13,7 +13,7 @@ public class CameraManager : MonoBehaviour
 
     void Start()
     {
-        offset = new Vector3(-5f, 10f, 6f);
+        offset = new Vector3(-5f, 12f, 8f);
         transform.rotation = Quaternion.Euler(new Vector3(45f, 135f, 0f));
         Camera.main.fieldOfView = 60f;
         SetPos();
