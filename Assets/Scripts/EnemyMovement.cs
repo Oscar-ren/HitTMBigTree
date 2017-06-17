@@ -10,6 +10,7 @@ public class EnemyMovement : MonoBehaviour {
 	public float maxDistance;
 	public float frozenTime = 5f;
 
+	private float frozenDuration;
 
 	void Awake ()
 	{
@@ -21,6 +22,7 @@ public class EnemyMovement : MonoBehaviour {
 
 	void Update ()
 	{
+		frozenDuration += Time.deltaTime;
 		players = GameObject.FindGameObjectsWithTag ("Player");
 		GameObject player = players[0];
 		float minValue = 1000000f;;
@@ -50,12 +52,15 @@ public class EnemyMovement : MonoBehaviour {
 	{
 		GetComponent<Animator> ().speed = 0;
 		nav.Stop ();
+		frozenDuration = 0;
 
 		Invoke ("ResumeAnimator", frozenTime);
 	}
 
 	public void ResumeAnimator()
 	{
+		if (frozenDuration < frozenTime)
+			return;
 		GetComponent<Animator> ().speed = 1f;
 		nav.Resume ();
 	}
