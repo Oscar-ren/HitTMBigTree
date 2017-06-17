@@ -1,4 +1,4 @@
-﻿﻿using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,25 +20,25 @@ public class Player1Manager : MonoBehaviour {
 		if(Input.GetKey(KeyCode.W))
 		{
 			animator.SetBool ("Walk", true);
-			transform.position = transform.position + Vector3.forward * Time.deltaTime * 3;
+			transform.position = transform.position - Vector3.forward * Time.deltaTime * 3;
 		}
 
 		if(Input.GetKey(KeyCode.S))
 		{
 			animator.SetBool ("Walk", true);
-			transform.position = transform.position - Vector3.forward * Time.deltaTime * 3;
+			transform.position = transform.position + Vector3.forward * Time.deltaTime * 3;
 		}
 
 		if(Input.GetKey(KeyCode.A))
 		{
 			animator.SetBool ("Walk", true);
-			transform.position = transform.position - Vector3.right * Time.deltaTime * 3;
+			transform.position = transform.position + Vector3.right * Time.deltaTime * 3;
 		}
 
 		if(Input.GetKey(KeyCode.D))
 		{
 			animator.SetBool ("Walk", true);
-			transform.position = transform.position + Vector3.right * Time.deltaTime * 3;
+			transform.position = transform.position - Vector3.right * Time.deltaTime * 3;
 		}
 
 		if(Input.GetKeyDown(KeyCode.J))
@@ -54,38 +54,38 @@ public class Player1Manager : MonoBehaviour {
 
 		if (Input.GetKey(KeyCode.A))
 		{
-			SwitchTurn (-90f);
+			SwitchTurn (90f);
 		}
 		if (Input.GetKey(KeyCode.D))
 		{
-			SwitchTurn (90f);
+			SwitchTurn (-90f);
 		}
 		if (Input.GetKey(KeyCode.W))
 		{
-			SwitchTurn (0);
+			SwitchTurn (180f);
 		}
 		if (Input.GetKey(KeyCode.S))
 		{
-			SwitchTurn (180f);
+			SwitchTurn (0f);
 		}
 
 		if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W))
 		{
-			SwitchTurn(-45f);
+			SwitchTurn(135f);
 		}
 
 		if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
 		{
-			SwitchTurn(45f);
+			SwitchTurn(225f);
 		}
 		if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S))
 		{
-			SwitchTurn(175f);
+			SwitchTurn(45f);
 		}
 
 		if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
 		{
-			SwitchTurn(135f);
+			SwitchTurn(315f);
 		}
 		
 	}
