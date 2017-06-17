@@ -21,11 +21,11 @@ public class Attack : MonoBehaviour {
 	}
     private void OnTriggerStay(Collider other)
     {
+
 		if(other.tag == "Enemy" && attack && Time.timeSinceLevelLoad - lastAttackTime > 1) {
-            Debug.Log("attack enemy");
             other.GetComponent<EnemyBattle>().BeAttacked(10);
             lastAttackTime = Time.timeSinceLevelLoad;
+			attack = false;
         }
-        attack = false;
 	}
 }
