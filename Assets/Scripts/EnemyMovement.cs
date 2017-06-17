@@ -34,14 +34,16 @@ public class EnemyMovement : MonoBehaviour {
 				player = players [i];
 			}
 		}
+		nav.SetDestination (player.transform.position);
 
 		if (minValue > Mathf.Pow(maxDistance, 2))
 		{
 			GetComponent<Animator>().SetFloat("Speed", 0.0f);
 			nav.Stop ();
+			return;
 		}
 
-		nav.SetDestination (player.transform.position);
+		nav.Resume ();
 	}
 
 	public void StopAnimator()
