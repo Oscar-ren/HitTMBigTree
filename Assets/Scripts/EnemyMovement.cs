@@ -10,7 +10,7 @@ public class EnemyMovement : MonoBehaviour {
 	public float maxDistance;
 	public float frozenTime = 5f;
 
-	private float frozenDuration;
+	public float frozenDuration = 5f;
 
 	void Awake ()
 	{
