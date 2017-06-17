@@ -67,11 +67,14 @@ public class EnemyMovement : MonoBehaviour {
 	{
 		GetComponent<Animator> ().speed = 0;
 		nav.Stop ();
-		wind = Instantiate (windPrefab, transform);
-		wind.transform.localPosition = Vector3.zero;
+
+		if(isFrozen == false)
+		{
+			wind = Instantiate (windPrefab, transform);
+			wind.transform.localPosition = Vector3.zero;
+		}
 		frozenDuration = 5f;
 		isFrozen = true;
-
 		Invoke ("ResumeAnimator", frozenTime);
 	}
 
