@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player1Attack : MonoBehaviour {
 
+	public int damage = 10;
+
     private bool attack;
     private float lastAttackTime;
 
@@ -24,7 +26,7 @@ public class Player1Attack : MonoBehaviour {
     {
 
 		if(other.tag == "Enemy" && attack && Time.timeSinceLevelLoad - lastAttackTime > 1) {
-            other.GetComponent<EnemyBattle>().BeAttacked(10);
+			other.GetComponent<EnemyBattle>().BeAttacked(damage);
             lastAttackTime = Time.timeSinceLevelLoad;
 			attack = false;
         }
