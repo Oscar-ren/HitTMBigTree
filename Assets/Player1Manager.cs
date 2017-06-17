@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour {
+public class Player1Manager : MonoBehaviour {
 
 	public Animator animator;
 
@@ -52,12 +52,6 @@ public class PlayerManager : MonoBehaviour {
 		}
 
 
-		if(Input.GetKey(KeyCode.Space))
-		{
-			gameObject.GetComponent<Rigidbody> ().AddForce (Vector3.up);
-		}
-
-
 		if (Input.GetKey(KeyCode.A))
 		{
 			SwitchTurn (-90f);
@@ -75,12 +69,23 @@ public class PlayerManager : MonoBehaviour {
 			SwitchTurn (180f);
 		}
 
-		if (Input.GetKey (KeyCode.A) && Input.GetKey (KeyCode.W)) {
-			SwitchTurn (-45f);
+		if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W))
+		{
+			SwitchTurn(-45f);
 		}
 
-		if (Input.GetKey (KeyCode.D) && Input.GetKey (KeyCode.W)) {
-			SwitchTurn (45f);
+		if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
+		{
+			SwitchTurn(45f);
+		}
+		if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S))
+		{
+			SwitchTurn(175f);
+		}
+
+		if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
+		{
+			SwitchTurn(135f);
 		}
 		
 	}

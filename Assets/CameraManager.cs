@@ -11,6 +11,7 @@ public class CameraManager : MonoBehaviour {
 	void Start () {
         offset = new Vector3(0f,22f, -21f);
         transform.rotation = Quaternion.Euler(new Vector3(45f, 0f, 0f));
+        Camera.main.fieldOfView = 23f;
 	}
 	
 	// Update is called once per frame
