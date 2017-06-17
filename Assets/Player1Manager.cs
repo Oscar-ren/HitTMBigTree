@@ -9,9 +9,16 @@ public class Player1Manager : MonoBehaviour {
 	private bool isRotate;
 	private Quaternion targetRotation;
 
+	public Transform player1;
+	public Transform player2;
+	float MaxDistance;
+
+    public float Speed = 5;
+
 	// Use this for initialization
 	void Start () {
 		animator = gameObject.GetComponent<Animator> ();
+		MaxDistance = Camera.main.pixelHeight * 2 / 3;
 	}
 	
 	// Update is called once per frame
@@ -19,26 +26,26 @@ public class Player1Manager : MonoBehaviour {
         isRotate = false;
 		if(Input.GetKey(KeyCode.W))
 		{
-			animator.SetBool ("Walk", true);
-			transform.position = transform.position - Vector3.forward * Time.deltaTime * 3;
+			animator.SetBool ("Run", true);
+            Move(-Vector3.forward);
 		}
 
 		if(Input.GetKey(KeyCode.S))
 		{
-			animator.SetBool ("Walk", true);
-			transform.position = transform.position + Vector3.forward * Time.deltaTime * 3;
+			animator.SetBool ("Run", true);
+			Move(Vector3.forward);
 		}
 
 		if(Input.GetKey(KeyCode.A))
 		{
-			animator.SetBool ("Walk", true);
-			transform.position = transform.position + Vector3.right * Time.deltaTime * 3;
+			animator.SetBool ("Run", true);
+            Move(Vector3.right);
 		}
 
 		if(Input.GetKey(KeyCode.D))
 		{
-			animator.SetBool ("Walk", true);
-			transform.position = transform.position - Vector3.right * Time.deltaTime * 3;
+			animator.SetBool ("Run", true);
+            Move(-Vector3.right);
 		}
 
 		if(Input.GetKeyDown(KeyCode.J))
@@ -48,7 +55,7 @@ public class Player1Manager : MonoBehaviour {
 
 		if(Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A))
 		{
-			animator.SetBool ("Walk", false);
+			animator.SetBool ("Run", false);
 		}
 
 
@@ -88,6 +95,21 @@ public class Player1Manager : MonoBehaviour {
 			SwitchTurn(315f);
 		}
 		
+	}
+
+	void Move(Vector3 dir)
+	{
+		Vector3 pos = transform.position + dir * Time.deltaTime * Speed;
+
+		Vector2 a = Camera.main.WorldToScreenPoint(pos);
+		Vector2 b = Camera.main.WorldToScreenPoint(player2.position - dir * Time.deltaTime * Speed);
+
+		float x = Camera.main.pixelWidth;
+		float y = Camera.main.pixelHeight;
+		if (a.x > 0 && a.x < x && a.y > 0 && a.y < y && b.x > 0 && b.x < x && b.y > 0 && b.y < y)
+		{
+			transform.position = pos;
+		}
 	}
 
 	IEnumerator TempCoroutine;
