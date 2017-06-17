@@ -9,7 +9,6 @@ public class PlayerBattle : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Status.SetFullHp(HP);
-		Status.SetHp(HP);
         Status.SetName(Name);
 	}
 	

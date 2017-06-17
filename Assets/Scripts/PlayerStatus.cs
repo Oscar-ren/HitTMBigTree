@@ -14,7 +14,7 @@ public class PlayerStatus : MonoBehaviour {
 	public Text Count;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		FullWidth = HpBoxRect.rect.width;
 	}
 	
@@ -23,9 +23,11 @@ public class PlayerStatus : MonoBehaviour {
 		
 	}
 
+
     public void SetHp (int hp) {
 		currentHP = hp;
         Count.text = hp + "/" + HP;
+
 		HpRect.DOSizeDelta(new Vector2(FullWidth * hp / HP, 0), 0.5f);
 	}
     public void SetFullHp (int hp) {
@@ -34,6 +36,6 @@ public class PlayerStatus : MonoBehaviour {
 		SetHp(hp);
     }
     public void SetName (string s) {
-		Name.text = name;
+		Name.text = s;
 	}
 }
