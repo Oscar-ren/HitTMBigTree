@@ -8,7 +8,6 @@ public class ArrowManager : MonoBehaviour {
 	{
 		if(other.tag == "Player")
 		{
-			Debug.Log ("Arrow Player");
 //			other.gameObject.GetComponent
 		}
 	}

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemyBattle : MonoBehaviour {
 	public EnemyStatus Status;
-	public int HP = 500;
+	public int HP;
+	public int Defense;
 	public string EnemyName;
 
 	void Start () {
@@ -12,8 +13,11 @@ public class EnemyBattle : MonoBehaviour {
 		Status.SetName(EnemyName);
 	}
 
-    public void Attacked (int h = 100) {
-		HP -= h;
+	public void Attacked (int damage) {
+		if (damage < Defense)
+			damage = Defense;
+
+		HP -= damage - Defense;
 		if (HP <= 0) {
             HP = 0;
 			Status.SetHp(HP);
@@ -21,9 +25,8 @@ public class EnemyBattle : MonoBehaviour {
         } else {
 			Status.SetHp(HP);
 		}
-
     }
     public void Die () {
-        Debug.Log("Enemy Die");
+		GetComponent<Animator> ().SetTrigger ("isDead");
     }
 }

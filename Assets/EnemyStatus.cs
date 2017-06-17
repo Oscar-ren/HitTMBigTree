@@ -11,7 +11,7 @@ public class EnemyStatus : MonoBehaviour {
     int HP;
     float FullWidth;
 
-	void Start () {
+	void Awake () {
         FullWidth = HpBox.GetComponent<RectTransform>().rect.width;
 	}
 	
