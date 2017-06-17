@@ -21,8 +21,8 @@ public class Inspiration : MonoBehaviour {
         }
         text.text = inspiration.ToString();
 	}
-    public bool Check () {
-        return inspiration > 0;
+    public bool Check (int num) {
+        return inspiration >= num;
     }
 
 }
