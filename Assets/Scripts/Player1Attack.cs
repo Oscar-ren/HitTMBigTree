@@ -6,6 +6,7 @@ public class Player1Attack : MonoBehaviour {
 
     private bool attack;
     private float lastAttackTime;
+    public Animator animator;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +19,21 @@ public class Player1Attack : MonoBehaviour {
         attack = false;
         if (Input.GetKeyDown(KeyCode.J)) {
             attack = true;
+			switch (Random.Range(0, 4))
+			{
+				case 0:
+					animator.SetTrigger("Attack 01");
+					break;
+				case 1:
+					animator.SetTrigger("Attack 02");
+					break;
+				case 3:
+					animator.SetTrigger("Double Attack");
+					break;
+				default:
+					animator.SetTrigger("Jump Attack");
+					break;
+			}
         }
 	}
     private void OnTriggerStay(Collider other)

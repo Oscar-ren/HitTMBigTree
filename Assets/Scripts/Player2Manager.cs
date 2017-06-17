@@ -47,10 +47,7 @@ public class Player2Manager : MonoBehaviour {
 			Move(-Vector3.right);
 		}
 
-        if(Input.GetKeyDown(KeyCode.Return))
-        {
-            animator.SetTrigger ("Projectile Attack");
-        }
+
 		if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
 		{
 			animator.SetBool("Run", false);
