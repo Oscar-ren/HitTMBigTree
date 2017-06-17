@@ -50,7 +50,21 @@ public class Player1Manager : MonoBehaviour {
 
 		if(Input.GetKeyDown(KeyCode.J))
 		{
-			animator.SetTrigger ("Rapid Attack");
+            
+            switch(Random.Range(0, 4)) {
+                case 0:
+					animator.SetTrigger("Attack 01");
+                    break;
+                case 1:
+					animator.SetTrigger("Attack 02");
+                    break;
+                case 3:
+                    animator.SetTrigger("Double Attack");
+                    break;
+                default:
+                    animator.SetTrigger("Jump Attack");
+                    break;
+			}
 		}
 
 		if(Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A))
