@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour {
 	GameObject[] players;
 	UnityEngine.AI.NavMeshAgent nav;
 	public float maxDistance;
+	public float frozenTime = 5f;
 
 
 	void Awake ()
@@ -20,7 +21,6 @@ public class EnemyMovement : MonoBehaviour {
 
 	void Update ()
 	{
-
 		players = GameObject.FindGameObjectsWithTag ("Player");
 		GameObject player = players[0];
 		float minValue = 1000000f;;
@@ -42,5 +42,19 @@ public class EnemyMovement : MonoBehaviour {
 		}
 
 		nav.SetDestination (player.transform.position);
+	}
+
+	public void StopAnimator()
+	{
+		GetComponent<Animator> ().speed = 0;
+		nav.Stop ();
+
+		Invoke ("ResumeAnimator", frozenTime);
+	}
+
+	public void ResumeAnimator()
+	{
+		GetComponent<Animator> ().speed = 1f;
+		nav.Resume ();
 	}
 }
