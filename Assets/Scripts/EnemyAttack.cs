@@ -10,7 +10,6 @@ public class EnemyAttack : MonoBehaviour {
 
 	Animator anim;
 	GameObject player;
-//	PlayerHealth playerHealth;
 	EnemyBattle enemyBattle;
 	bool playerInRange;
 	float timer;
@@ -21,8 +20,6 @@ public class EnemyAttack : MonoBehaviour {
 
 	void Awake ()
 	{
-		player = GameObject.FindGameObjectWithTag ("Player");
-//		playerHealth = player.GetComponent <PlayerHealth> ();
 		enemyBattle = GetComponent<EnemyBattle>();
 		anim = GetComponent <Animator> ();
 		timer = timeBetweenAttacks;
@@ -33,6 +30,7 @@ public class EnemyAttack : MonoBehaviour {
 	{
 		if(other.tag == "Player")
 		{
+			player = other.gameObject;
 			transform.LookAt (other.transform.position);
 			playerInRange = true;
 		}
@@ -43,6 +41,7 @@ public class EnemyAttack : MonoBehaviour {
 	{
 		if(other.tag == "Player")
 		{
+			player = null;
 			playerInRange = false;
 		}
 	}
@@ -53,15 +52,11 @@ public class EnemyAttack : MonoBehaviour {
 		anim.SetFloat("Speed", 0.0f);
 		anim.SetTrigger ("Attack");
 
-		if(gameObject.name == "Enemy_Archer")
+		if(player != null && gameObject.name.IndexOf("Enemy_Archer") < 0)
 		{
-			// 弓箭手攻击不掉血，箭射到才掉血
+			player.GetComponent<PlayerBattle> ().BeAttecked (attackDamage);
 		}
-
-//		if(playerHealth.currentHealth > 0)
-//		{
-//			playerHealth.TakeDamage (attackDamage);
-//		}
+			
 	}
 
 
@@ -74,10 +69,5 @@ public class EnemyAttack : MonoBehaviour {
 		{
 			Attack ();
 		}
-
-		//		if(playerHealth.currentHealth <= 0)
-		//		{
-		//			anim.SetTrigger ("PlayerDead");
-		//		}
 	}
 }

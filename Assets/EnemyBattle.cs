@@ -13,7 +13,7 @@ public class EnemyBattle : MonoBehaviour {
 		Status.SetName(EnemyName);
 	}
 
-	public void Attacked (int damage) {
+	public void BeAttacked (int damage) {
 		if (damage < Defense)
 			damage = Defense;
 

@@ -1,36 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyMovement : MonoBehaviour {
 
 	Transform player;
-//	PlayerHealth playerHealth;
-//	EnemyHealth enemyHealth;
 	UnityEngine.AI.NavMeshAgent nav;
 
 
 	void Awake ()
 	{
-		player = GameObject.FindGameObjectWithTag ("Player").transform;
-//		playerHealth = player.GetComponent <PlayerHealth> ();
-//		enemyHealth = GetComponent <EnemyHealth> ();
+		player = GameObject.FindGameObjectsWithTag ("Player")[Random.Range(0, 2)].transform;
 		nav = GetComponent <UnityEngine.AI.NavMeshAgent> ();
 	}
 
 
 	void Update ()
 	{
-//		if(enemyHealth.currentHealth > 0 && playerHealth.currentHealth > 0)
-//		{
 		GetComponent<Animator>().SetFloat("Speed", 1.0f);
-			nav.SetDestination (player.position);
-//		}
-//		else
-//		{
-//			nav.enabled = false;
-//		}
-
+		nav.SetDestination (player.position);
 	}
-		
 }

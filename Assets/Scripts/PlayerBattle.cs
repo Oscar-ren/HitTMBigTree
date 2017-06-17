@@ -17,7 +17,7 @@ public class PlayerBattle : MonoBehaviour {
 		
 	}
 
-    void BeAttecked (int h = 100) {
+    public void BeAttecked (int h = 100) {
 
         HP -= h;
         if (HP <= 0) {
