@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using DG.Tweening;
 
 public class EnemyAttack : MonoBehaviour {
 
@@ -57,18 +58,16 @@ public class EnemyAttack : MonoBehaviour {
 
 	void DamagePlayer()
 	{
-		if(player != null && gameObject.name.IndexOf("Enemy_Archer") < 0 && GetComponent<EnemyMovement>().isFrozen == false)
+		if(player != null && gameObject.name.IndexOf("Enemy_Archer") < 0 && gameObject.name.IndexOf("Enemy_Necro") < 0 && GetComponent<EnemyMovement>().isFrozen == false)
 		{
 			player.GetComponent<PlayerBattle> ().BeAttecked (attackDamage);
 		}
 	}
 
 
-
 	void Update () {
 
 		timer += Time.deltaTime;
-
 		if(timer >= timeBetweenAttacks && playerInRange && enemyBattle.HP > 0)
 		{
 			Attack ();

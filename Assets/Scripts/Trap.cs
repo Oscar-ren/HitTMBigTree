@@ -5,10 +5,8 @@ using UnityEngine;
 public class Trap : MonoBehaviour {
     public int damage = 50;
 
-    private List<Collider> Cache;
     private void Awake()
     {
-        Cache = new List<Collider>();
     }
     private void Update()
     {

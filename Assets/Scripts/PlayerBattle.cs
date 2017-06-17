@@ -7,7 +7,8 @@ public class PlayerBattle : MonoBehaviour {
 	public PlayerStatus Status;
 	public int HP = 1000;
     public string Name;
-	// Use this for initialization
+	public int Defense;
+
 	void Start () {
         Status.SetFullHp(HP);
         Status.SetName(Name);
@@ -19,9 +20,12 @@ public class PlayerBattle : MonoBehaviour {
 			Die ();
 	}
 
-    public void BeAttecked (int h = 100) {
+	public void BeAttecked (int damage) {
 
-        HP -= h;
+		if (damage < Defense)
+			damage = Defense;
+		
+		HP -= damage - Defense;
         if (HP <= 0) {
             HP = 0;
             Status.SetHp(HP);
