@@ -9,10 +9,16 @@ public class Player2Manager : MonoBehaviour {
     private bool isRotate;
     private Quaternion targetRotation;
 
-    // Use this for initialization
-    void Start () {
+    public Transform player1;
+	public Transform player2;
+
+	float MaxDistance;
+
+	// Use this for initialization
+	void Start () {
         animator = gameObject.GetComponent<Animator> ();
-    }
+		MaxDistance = Camera.main.pixelHeight * 2 / 3;
+	}
     
     // Update is called once per frame
     void Update () {
@@ -20,25 +26,25 @@ public class Player2Manager : MonoBehaviour {
         if(Input.GetKey(KeyCode.UpArrow))
         {
             animator.SetBool ("Walk", true);
-            transform.position = transform.position + Vector3.forward * Time.deltaTime * 3;
+			Move(-Vector3.forward);
 		}
 
         if(Input.GetKey(KeyCode.DownArrow))
         {
             animator.SetBool ("Walk", true);
-            transform.position = transform.position - Vector3.forward * Time.deltaTime * 3;
+			Move(Vector3.forward);
 		}
 
         if(Input.GetKey(KeyCode.LeftArrow))
         {
             animator.SetBool ("Walk", true);
-            transform.position = transform.position - Vector3.right * Time.deltaTime * 3;
+			Move(Vector3.right);
 		}
 
         if(Input.GetKey(KeyCode.RightArrow))
         {
             animator.SetBool ("Walk", true);
-            transform.position = transform.position + Vector3.right * Time.deltaTime * 3;
+			Move(-Vector3.right);
 		}
 
         if(Input.GetKeyDown(KeyCode.Return))
@@ -53,42 +59,56 @@ public class Player2Manager : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.LeftArrow))
 		{
-			SwitchTurn(-90f);
+			SwitchTurn(90f);
 		}
         if (Input.GetKey(KeyCode.RightArrow))
 		{
-			SwitchTurn(90f);
+			SwitchTurn(-90f);
 		}
         if (Input.GetKey(KeyCode.UpArrow))
 		{
-			SwitchTurn(0);
+			SwitchTurn(180f);
 		}
         if (Input.GetKey(KeyCode.DownArrow))
 		{
-			SwitchTurn(180f);
+			SwitchTurn(0f);
 		}
 
 		if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.UpArrow))
         {
-            SwitchTurn(-45f);
+            SwitchTurn(135f);
         }
 
         if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.UpArrow))
         {
-            SwitchTurn(45f);
+            SwitchTurn(225f);
         }
         if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.DownArrow))
         {
-            SwitchTurn(175f);
+            SwitchTurn(45f);
         }
 
         if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.DownArrow))
         {
-            SwitchTurn(135f);
+            SwitchTurn(315f);
         }
 
 
 
+	}
+
+	void Move(Vector3 dir)
+	{
+        Vector3 pos = transform.position + dir * Time.deltaTime * 3;
+
+		Vector2 a = Camera.main.WorldToScreenPoint(pos);
+		Vector2 b = Camera.main.WorldToScreenPoint(player1.position - dir * Time.deltaTime * 3);
+
+		float x = Camera.main.pixelWidth;
+        float y = Camera.main.pixelHeight;
+        if (a.x > 0 && a.x < x && a.y > 0 && a.y < y && b.x > 0 && b.x < x && b.y > 0 && b.y < y) {
+            transform.position = pos;
+		}
 	}
 
     IEnumerator TempCoroutine;
