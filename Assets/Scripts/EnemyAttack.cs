@@ -57,7 +57,7 @@ public class EnemyAttack : MonoBehaviour {
 
 	void DamagePlayer()
 	{
-		if(player != null && gameObject.name.IndexOf("Enemy_Archer") < 0)
+		if(player != null && gameObject.name.IndexOf("Enemy_Archer") < 0 && GetComponent<EnemyMovement>().frozenDuration >= 5f)
 		{
 			player.GetComponent<PlayerBattle> ().BeAttecked (attackDamage);
 		}
