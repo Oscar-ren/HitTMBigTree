@@ -7,22 +7,31 @@ public class EnemyMovement : MonoBehaviour {
 
 	GameObject[] players;
 	UnityEngine.AI.NavMeshAgent nav;
-	public float maxDistance;
-	public float frozenTime = 5f;
 
-	public float frozenDuration = 5f;
+
+	public float maxDistance = 20f;
+	public float frozenTime = 5f;
+	public bool isFrozen = false;
+
+	public GameObject windPrefab;
+
+	private float frozenDuration = 0;
+	private GameObject wind;
 
 	void Awake ()
 	{
 		nav = GetComponent <UnityEngine.AI.NavMeshAgent> ();
 		GetComponent<Animator>().SetFloat("Speed", 1.0f);
-		maxDistance = 20;
 	}
 
 
 	void Update ()
 	{
-		frozenDuration += Time.deltaTime;
+		if (frozenDuration > 0.2)
+			frozenDuration -= Time.deltaTime;
+		else
+			isFrozen = false;
+
 		players = GameObject.FindGameObjectsWithTag ("Player");
 		GameObject player = players[0];
 		float minValue = 1000000f;;
@@ -45,22 +54,32 @@ public class EnemyMovement : MonoBehaviour {
 			return;
 		}
 
-		nav.Resume ();
+		if(isFrozen == false)
+			nav.Resume ();
+
+		if(Input.GetKeyDown(KeyCode.M))
+		{
+			StopAnimator ();
+		}
 	}
 
 	public void StopAnimator()
 	{
 		GetComponent<Animator> ().speed = 0;
 		nav.Stop ();
-		frozenDuration = 0;
+		wind = Instantiate (windPrefab, transform);
+		wind.transform.localPosition = Vector3.zero;
+		frozenDuration = 5f;
+		isFrozen = true;
 
 		Invoke ("ResumeAnimator", frozenTime);
 	}
 
 	public void ResumeAnimator()
 	{
-		if (frozenDuration < frozenTime)
+		if (isFrozen)
 			return;
+		Destroy (wind);
 		GetComponent<Animator> ().speed = 1f;
 		nav.Resume ();
 	}
