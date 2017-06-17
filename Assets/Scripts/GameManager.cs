@@ -5,12 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GameManager {
 
-	public static bool isOver = false;
+	public static bool isEnd = false;
+	public static bool isWin;
 
-	public static void GameOver()
+	public static void LoadEndScene(bool hasWin)
 	{
-		if(isOver == false)
-			SceneManager.LoadScene ("GameOver", LoadSceneMode.Additive);
-		isOver = true;
+		isWin = hasWin;
+		if(isEnd == false)
+			SceneManager.LoadScene ("GameEnd", LoadSceneMode.Additive);
+		isEnd = true;
 	}
 }
