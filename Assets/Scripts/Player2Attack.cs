@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player2Attack : MonoBehaviour {
     private bool attack;
+    public Inspiration Ins;
 	// Use this for initialization
 	void Start () {
 		
@@ -23,11 +24,12 @@ public class Player2Attack : MonoBehaviour {
 
 		if (other.tag == "Enemy" && attack)
 		{
-			StartCoroutine(DoFrozen(other));
+			if (Ins.Check())
+			{
+				Ins.Use(10);
+				other.GetComponent<EnemyMovement>().StopAnimator();
+			}
 		}
 	}
-    IEnumerator DoFrozen (Collider other) {
-        yield return new WaitForSeconds(1f);
-        other.GetComponent<EnemyMovement>().StopAnimator();
-    }
+
 }
