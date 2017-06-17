@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player2Attack : MonoBehaviour {
     private bool attack;
+    public Inspiration Ins;
 	// Use this for initialization
 	void Start () {
 		
@@ -15,19 +16,21 @@ public class Player2Attack : MonoBehaviour {
 		attack = false;
         if (Input.GetKeyDown(KeyCode.Return))
 		{
-			attack = true;
+            if (Ins.Check(10)){
+				Ins.Use(10);
+				attack = true;
+			}
 		}
 	}
 	private void OnTriggerStay(Collider other)
 	{
-
+        if (other.tag == "Trap" && attack) {
+            Destroy(other.gameObject);
+        }
 		if (other.tag == "Enemy" && attack)
 		{
-			StartCoroutine(DoFrozen(other));
+			other.GetComponent<EnemyMovement>().StopAnimator();
 		}
 	}
-    IEnumerator DoFrozen (Collider other) {
-        yield return new WaitForSeconds(1f);
-        other.GetComponent<EnemyMovement>().StopAnimator();
-    }
+
 }
