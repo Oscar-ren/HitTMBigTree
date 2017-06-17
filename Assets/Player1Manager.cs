@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +16,7 @@ public class Player1Manager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        isRotate = false;
 		if(Input.GetKey(KeyCode.W))
 		{
 			animator.SetBool ("Walk", true);
