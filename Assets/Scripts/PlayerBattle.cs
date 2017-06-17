@@ -33,6 +33,6 @@ public class PlayerBattle : MonoBehaviour {
     }
     void Die () {
         Debug.Log("player die");
-		SceneManager.LoadScene ("GameOver", LoadSceneMode.Additive);
+		GameManager.GameOver ();
     }
 }
