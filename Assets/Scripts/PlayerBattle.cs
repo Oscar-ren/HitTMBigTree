@@ -37,6 +37,6 @@ public class PlayerBattle : MonoBehaviour {
     }
     void Die () {
         Debug.Log("player die");
-		GameManager.GameOver ();
+		GameManager.LoadEndScene (false);
     }
 }
