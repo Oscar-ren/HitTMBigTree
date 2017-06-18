@@ -9,7 +9,7 @@ public class CameraAnim : MonoBehaviour {
 	public GameObject p4;
 	// Use this for initialization
 	void Start () {
-        Fly();
+//        Fly();
 	}
 	
 	// Update is called once per frame

@@ -55,7 +55,10 @@ public class EnemyMovement : MonoBehaviour {
 		}
 
 		if(isFrozen == false)
+		{
+			GetComponent<Animator>().SetFloat("Speed", 1.0f);
 			nav.Resume ();
+		}
 
 		if(Input.GetKeyDown(KeyCode.M))
 		{

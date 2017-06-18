@@ -18,6 +18,9 @@ public class EnemyStatus : MonoBehaviour {
 	void LateUpdate () {
         Vector3 op = gameObject.transform.parent.transform.parent.transform.position;
         Vector2 a = Camera.main.WorldToScreenPoint(new Vector3(op.x, op.y + 2f, op.z));
+		Debug.Log ("---");
+		Debug.Log (op);
+		Debug.Log (a);
         gameObject.transform.position = a;
 	}
 
