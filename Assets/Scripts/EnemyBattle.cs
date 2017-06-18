@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyBattle : MonoBehaviour
 {
 	public EnemyStatus Status;
+	public AudioClip beAttackedClip;
+	public AudioClip deathClip;
 	public int HP;
 	public int Defense;
 	public string EnemyName;
@@ -17,6 +19,7 @@ public class EnemyBattle : MonoBehaviour
 
 	public void BeAttacked(int damage)
 	{
+//		GetComponent<SoundManager> ().PlaySingle (beAttackedClip);
 		if (damage < Defense)
 			damage = Defense;
 
@@ -34,6 +37,7 @@ public class EnemyBattle : MonoBehaviour
 	}
 	public void Die()
 	{
+		GetComponent<SoundManager> ().PlaySingle (deathClip);
 		GetComponent<Animator>().SetTrigger("isDead");
 		Invoke("DestoryEnemy", 1f);
 	}
