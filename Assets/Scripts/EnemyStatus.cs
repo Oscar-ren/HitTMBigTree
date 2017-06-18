@@ -17,7 +17,11 @@ public class EnemyStatus : MonoBehaviour {
 	
 	void Update () {
         Vector3 op = gameObject.transform.parent.transform.parent.transform.position;
-        Vector2 a = Camera.main.WorldToScreenPoint(new Vector3(op.x, op.y + 2f, op.z));
+		float f = 2f;
+		if (gameObject.transform.parent.transform.parent.name == "boss") {
+			f = 4f;
+		}
+		Vector2 a = Camera.main.WorldToScreenPoint(new Vector3(op.x, op.y + f, op.z));
         gameObject.transform.position = a;
 	}
 

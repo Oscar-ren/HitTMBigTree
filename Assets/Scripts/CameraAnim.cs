@@ -1,4 +1,4 @@
-﻿﻿using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -56,13 +56,18 @@ public class CameraAnim : MonoBehaviour {
         CM.enabled = true;
 	}
 
+	void TakeEnd() {
+		GameManager.LoadEndScene (true);
+		Camera.main.GetComponent<AudioSource> ().Stop ();
+	}
+
     public void Fly() {
-        GetComponent<CameraManager>().enabled = false;
+		CM.enabled = false;
         GetComponent<Animator>().SetTrigger("Fly");
 		Set(p1, new Vector3(-21.8f, 2.72f, 57.5f), -42.71f);
 		Set(p2, new Vector3(-19.9f, 2.34f, 57.8f), -58);
-		Set(p3, new Vector3(-25f, 2.67f, 54.41f), 5);
-		Set(p4, new Vector3(-23f, 2.15f, 56.61f), -18.85f);
+		Set(p3, new Vector3(-25f, 1, 54.41f), 5);
+		Set(p4, new Vector3(-23f, 1, 56.61f), -18.85f);
 		p1.GetComponent<Animator>().SetTrigger("Victory");
 		p2.GetComponent<Animator>().SetTrigger("Victory");
 		p3.GetComponent<Animator>().SetTrigger("Victory");

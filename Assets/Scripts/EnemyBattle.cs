@@ -45,5 +45,10 @@ public class EnemyBattle : MonoBehaviour
 	void DestoryEnemy()
 	{
 		Destroy(gameObject);
+		if(gameObject.name == "boss")
+		{
+			Camera.main.GetComponent<CameraAnim> ().Fly ();
+			GameObject.Find ("Enemies").SetActive (false);
+		}
 	}
 }

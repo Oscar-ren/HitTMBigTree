@@ -49,7 +49,10 @@ public class triggerProjectile : MonoBehaviour {
 		Destroy(projectileInstance);
 
 		if (hitEffect)
-			Instantiate(hitEffect, victim, transform.rotation);
+		{
+			GameObject hitObj = Instantiate(hitEffect, victim, transform.rotation);
+			hitObj.transform.parent = transform;
+		}
 
 		yield return null;
 	}
