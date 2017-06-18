@@ -11,6 +11,8 @@ public class GameEndManager : MonoBehaviour {
 	public Text gameOver;
 	public Button restart;
 	public Button quit;
+	public AudioClip winClip;
+	public AudioClip gameOverClip;
 
 	void Start()
 	{
@@ -22,6 +24,7 @@ public class GameEndManager : MonoBehaviour {
 
 	public void GameOver()
 	{
+		GetComponent<SoundManager> ().PlaySingle (gameOverClip);
 		gameOver.DOText ("失败!", 1).SetDelay (1);
 		gameOver.DOText ("最终美术妹子和黑山老妖过上了幸福美满的生活", 3).SetDelay (2).SetEase(Ease.Linear).OnComplete(
 			() => {
@@ -33,6 +36,7 @@ public class GameEndManager : MonoBehaviour {
 
 	public void Win()
 	{
+		GetComponent<SoundManager> ().PlaySingle (winClip);
 		gameOver.DOText (" 胜利!", 1).SetDelay (1);
 		gameOver.DOText ("如果你愿意再来一遍的话", 3).SetDelay (2).SetEase(Ease.Linear).OnComplete(
 			() => {
