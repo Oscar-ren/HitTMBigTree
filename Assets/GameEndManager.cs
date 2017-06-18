@@ -43,7 +43,7 @@ public class GameEndManager : MonoBehaviour {
 	}
 	
 	void Update () {
-		if(mask.GetComponent<RectTransform> ().rect.height < 720)
+		if(mask.GetComponent<RectTransform> ().rect.height < 1080)
 			mask.GetComponent<RectTransform> ().sizeDelta =  new Vector2(0, mask.GetComponent<RectTransform> ().rect.height + 720 * Time.deltaTime);
 	}
 
