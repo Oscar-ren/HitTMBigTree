@@ -6,7 +6,7 @@ using DG.Tweening;
 public class SuperSkill : MonoBehaviour {
 
 	public GameObject prefab;
-	public int minBlood = 100;
+	public int minBlood = 20;
 	private bool isTriggerHuge;
 
 
