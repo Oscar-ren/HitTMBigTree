@@ -13,8 +13,10 @@ public class EnemyMovement : MonoBehaviour {
 	public float frozenTime = 5f;
 	public bool isFrozen = false;
 
+
 	public GameObject windPrefab;
 
+	private bool isAway;
 	private float frozenDuration = 0;
 	private GameObject wind;
 
@@ -49,13 +51,15 @@ public class EnemyMovement : MonoBehaviour {
 
 		if (minValue > Mathf.Pow(maxDistance, 2))
 		{
+			isAway = true;
 			GetComponent<Animator>().SetFloat("Speed", 0.0f);
 			nav.Stop ();
 			return;
 		}
 
-		if(isFrozen == false)
+		if(isFrozen == false && isAway == true)
 		{
+			isAway = false;
 			GetComponent<Animator>().SetFloat("Speed", 1.0f);
 			nav.Resume ();
 		}

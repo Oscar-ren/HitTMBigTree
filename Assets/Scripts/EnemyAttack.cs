@@ -31,6 +31,7 @@ public class EnemyAttack : MonoBehaviour {
 	{
 		if(other.tag == "Player")
 		{
+			Debug.Log("-------------------Idle-------------------");
 			anim.SetFloat("Speed", 0.0f);
 			player = other.gameObject;
 			transform.LookAt (other.transform.position);
@@ -43,6 +44,7 @@ public class EnemyAttack : MonoBehaviour {
 	{
 		if(other.tag == "Player")
 		{
+			Debug.Log("-------------------Run-------------------");
 			anim.SetFloat("Speed", 1.0f);
 			player = null;
 			playerInRange = false;
