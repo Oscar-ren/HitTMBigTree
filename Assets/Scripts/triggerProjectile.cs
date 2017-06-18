@@ -51,7 +51,7 @@ public class triggerProjectile : MonoBehaviour {
 		if (hitEffect)
 		{
 			GameObject hitObj = Instantiate(hitEffect, victim, transform.rotation);
-			hitObj.transform.parent = transform;
+			hitObj.transform.parent = transform.parent;
 		}
 
 		yield return null;

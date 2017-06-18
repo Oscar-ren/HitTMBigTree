@@ -24,7 +24,7 @@ public class SuperSkill : MonoBehaviour {
 	
 	void Update () {
 
-		if(gameObject.name == "Enemy_Necro" && GetComponent<EnemyBattle>().HP < minBlood && isTriggerHuge != true)
+		if(gameObject.name == "boss" && GetComponent<EnemyBattle>().HP < minBlood && isTriggerHuge != true)
 		{
 			isTriggerHuge = true;
 			gameObject.transform.DOScale (initelScale * 1.8f, 2).SetEase(Ease.InQuad);
