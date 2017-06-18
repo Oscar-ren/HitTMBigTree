@@ -13,11 +13,13 @@ public class SuperSkill : MonoBehaviour {
 	private int initalDamage;
 	private float initalBetwwenAttack;
 	private GameObject initalPrefab;
+	private Vector3 initelScale;
 
 	void Start () {
 		initalDamage = GetComponent<EnemyAttack> ().attackDamage;
 		initalBetwwenAttack = GetComponent<EnemyAttack> ().timeBetweenAttacks;
 		initalPrefab = GetComponent<triggerProjectile> ().hitEffect;
+		initelScale = transform.localScale;
 	}
 	
 	void Update () {
@@ -25,7 +27,7 @@ public class SuperSkill : MonoBehaviour {
 		if(gameObject.name == "Enemy_Necro" && GetComponent<EnemyBattle>().HP < minBlood && isTriggerHuge != true)
 		{
 			isTriggerHuge = true;
-			gameObject.transform.DOScale (new Vector3 (1.8f, 1.8f, 1.8f), 2).SetEase(Ease.InQuad);
+			gameObject.transform.DOScale (initelScale * 1.8f, 2).SetEase(Ease.InQuad);
 			GetComponent<EnemyAttack>().attackDamage = initalDamage * 2 / 3;
 			GetComponent<EnemyAttack>().timeBetweenAttacks = initalBetwwenAttack * 3 / 2;
 			GetComponent<triggerProjectile> ().hitEffect = prefab;
@@ -35,7 +37,7 @@ public class SuperSkill : MonoBehaviour {
 
 	void ReSetSkill()
 	{
-		gameObject.transform.DOScale (new Vector3 (1.3f, 1.3f, 1.3f), 1).SetEase(Ease.OutQuad);
+		gameObject.transform.DOScale (initelScale, 1).SetEase(Ease.OutQuad);
 		GetComponent<EnemyAttack>().attackDamage = initalDamage;
 		GetComponent<EnemyAttack>().timeBetweenAttacks = initalBetwwenAttack;
 		GetComponent<triggerProjectile> ().hitEffect = initalPrefab;
