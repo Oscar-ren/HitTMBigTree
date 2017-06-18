@@ -8,6 +8,12 @@ public class GameManager {
 	public static bool isEnd = false;
 	public static bool isWin;
 
+	public static void Reset()
+	{
+		isEnd = false;
+		isWin = false;
+	}
+
 	public static void LoadEndScene(bool hasWin)
 	{
 		isWin = hasWin;
