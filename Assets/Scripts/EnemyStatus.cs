@@ -15,7 +15,7 @@ public class EnemyStatus : MonoBehaviour {
         FullWidth = HpBox.GetComponent<RectTransform>().rect.width;
 	}
 	
-	void LateUpdate () {
+	void Update () {
         Vector3 op = gameObject.transform.parent.transform.parent.transform.position;
         Vector2 a = Camera.main.WorldToScreenPoint(new Vector3(op.x, op.y + 2f, op.z));
         gameObject.transform.position = a;
