@@ -10,15 +10,11 @@ public class Player1Manager : MonoBehaviour {
 	private Quaternion targetRotation;
 
 	public Transform player1;
-	public Transform player2;
-	float MaxDistance;
 
     public float Speed = 5;
 
 	// Use this for initialization
 	void Start () {
-		animator = gameObject.GetComponent<Animator> ();
-		MaxDistance = Camera.main.pixelHeight * 2 / 3;
 	}
 	
 	// Update is called once per frame
@@ -90,22 +86,22 @@ public class Player1Manager : MonoBehaviour {
 		{
 			SwitchTurn(315f);
 		}
-		
+
+
 	}
 
+    public void TouchDir(Vector2 v) {
+		animator.SetBool("Run", true);
+		transform.LookAt(transform.position - new Vector3(v.x,0,v.y));
+        
+    }
+    public void TouchEnd () {
+		animator.SetBool("Run", false);
+	}
 	void Move(Vector3 dir)
 	{
-		Vector3 pos = transform.position + dir * Time.deltaTime * Speed;
+		transform.position = transform.position + dir * Time.deltaTime * Speed;
 
-		Vector2 a = Camera.main.WorldToScreenPoint(pos);
-		Vector2 b = Camera.main.WorldToScreenPoint(player2.position - dir * Time.deltaTime * Speed);
-
-		float x = Camera.main.pixelWidth;
-		float y = Camera.main.pixelHeight;
-		if (a.x > 0 && a.x < x && a.y > 0 && a.y < y && b.x > 0 && b.x < x && b.y > 0 && b.y < y)
-		{
-			transform.position = pos;
-		}
 	}
 
 	IEnumerator TempCoroutine;

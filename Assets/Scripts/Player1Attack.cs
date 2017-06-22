@@ -27,7 +27,6 @@ public class Player1Attack : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-        attack = false;
         if (Input.GetKeyDown(KeyCode.J)) {
             attack = true;
 			switch (Random.Range(0, 4))
@@ -56,8 +55,39 @@ public class Player1Attack : MonoBehaviour {
 				}
         }
 	}
-
     Dictionary<Collider, float> cache = new Dictionary<Collider, float> ();
+    public void Attack () {
+		attack = true;
+        Invoke("ResetFlag", 0.3f);
+		switch (Random.Range(0, 4))
+		{
+			case 0:
+				animator.SetTrigger("Attack 01");
+				break;
+			case 1:
+				animator.SetTrigger("Attack 02");
+				break;
+			case 3:
+				animator.SetTrigger("Double Attack");
+				break;
+			default:
+				animator.SetTrigger("Jump Attack");
+				break;
+		}
+	}
+    public void DoubleAttack() {
+
+		if (Ins.Check(10))
+		{
+			Ins.Use(10);
+			DoubleDamage = true;
+			Invoke("CancelDoubleDamage", 5f);
+			DoubleAnim.Play();
+		}
+    }
+    void ResetFlag() {
+		attack = false;
+	}
 
     private void OnTriggerStay(Collider other)
     {

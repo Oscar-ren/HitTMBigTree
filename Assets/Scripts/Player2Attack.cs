@@ -23,6 +23,21 @@ public class Player2Attack : MonoBehaviour {
 			}
 		}
 	}
+	public void Frozen()
+	{
+		if (Ins.Check(10))
+		{
+			animator.SetTrigger("Projectile Attack");
+			Ins.Use(10);
+			attack = true;
+		}
+		Invoke("ResetFlag", 0.3f);
+	}
+	void ResetFlag()
+	{
+		attack = false;
+	}
+
 	private void OnTriggerStay(Collider other)
 	{
         if (other.tag == "Trap" && attack) {

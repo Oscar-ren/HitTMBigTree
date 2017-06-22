@@ -39,16 +39,21 @@ public class EnemyBattle : MonoBehaviour
 	{
 		GetComponent<SoundManager> ().PlaySingle (deathClip);
 		GetComponent<Animator>().SetTrigger("isDead");
-		Invoke("DestoryEnemy", 1f);
+
+
+		if(gameObject.name == "boss")
+        {
+			Invoke("DestoryEnemy", 1f);
+        } else {
+			Invoke("DestoryEnemy", 2f);
+		}
 	}
 
 	void DestoryEnemy()
 	{
 		Destroy(gameObject);
-		if(gameObject.name == "boss")
-		{
-			Camera.main.GetComponent<CameraAnim> ().Fly ();
-			GameObject.Find ("Enemies").SetActive (false);
-		}
+		if (gameObject.name == "boss")
+			Camera.main.GetComponent<CameraAnim>().Fly();
 	}
+
 }
